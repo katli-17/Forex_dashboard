@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+    <title>Forex Dashboard</title>
+    <link rel="stylesheet" href="fxdashstyle.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Forex Dashboard</h1>
+      <p id="last-updated">Last updated: --:--:--</p>
+    </header>
+
+    <!-- RATES -->
+    <div id="page-rates" class="page active">
+      <section class="watchlist">
+        <h2>Live Rates (Base: <span id="base-label">USD</span>)</h2>
+        <div id="rates-container"></div>
+      </section>
+    </div>
+
+    <!-- CHART PAGE (opened from card click) -->
+    <div id="page-chart" class="page">
+      <section class="chart-section">
+        <button id="back-btn">← Back to Rates</button>
+        <h2 id="chart-title">Chart</h2>
+        <div class="timerange-controls">
+          <button class="time-btn active" data-days="7">1W</button>
+          <button class="time-btn" data-days="30">1M</button>
+          <button class="time-btn" data-days="90">3M</button>
+          <button class="time-btn" data-days="180">6M</button>
+          <button class="time-btn" data-days="365">1Y</button>
+        </div>
+        <canvas id="forex-chart"></canvas>
+      </section>
+    </div>
+
+    <!-- NEWS -->
+    <div id="page-news" class="page">
+      <section class="news-section">
+        <h2>Latest Forex News</h2>
+        <div id="news-container">
+          <p class="loading-text">Loading news...</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONVERTER -->
+    <div id="page-converter" class="page">
+      <section class="converter-section">
+        <h2>Currency Converter</h2>
+        <div class="converter-controls">
+          <input type="number" id="amount" placeholder="Amount" value="1"/>
+          <select id="from-currency">
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+          </select>
+          <span>→</span>
+          <select id="to-currency">
+            <option value="ZAR">ZAR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+          </select>
+          <button id="convert-btn">Convert</button>
+        </div>
+        <p id="converter-result"></p>
+      </section>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="page-settings" class="page">
+      <section class="settings-section">
+        <h2>Settings</h2>
+
+        <div class="setting-group">
+          <label>Base Currency</label>
+          <select id="base-currency">
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+            <option value="AUD">AUD</option>
+            <option value="CAD">CAD</option>
+          </select>
+          <button id="apply-base">Apply</button>
+        </div>
+
+        <div class="setting-group">
+          <label>Theme</label>
+          <button id="theme-toggle">Switch to Light Theme</button>
+        </div>
+
+        <div class="setting-group">
+          <label>Manage Watchlist</label>
+          <div id="watchlist-manager">
+            <div class="watchlist-options">
+              <label><input type="checkbox" value="ZAR" checked /> ZAR</label>
+              <label><input type="checkbox" value="EUR" checked /> EUR</label>
+              <label><input type="checkbox" value="GBP" checked /> GBP</label>
+              <label><input type="checkbox" value="JPY" checked /> JPY</label>
+              <label><input type="checkbox" value="AUD" checked /> AUD</label>
+              <label><input type="checkbox" value="CAD" checked /> CAD</label>
+              <label><input type="checkbox" value="CHF" /> CHF</label>
+              <label><input type="checkbox" value="CNY" /> CNY</label>
+              <label><input type="checkbox" value="XAU" checked /> XAU (Gold)</label>
+              <label><input type="checkbox" value="XAG" checked /> XAG (Silver)</label>
+            </div>
+            <button id="apply-watchlist">Apply Watchlist</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-page="rates">
+        <span class="nav-icon">📊</span>
+        <span>Rates</span>
+      </button>
+      <button class="nav-btn" data-page="news">
+        <span class="nav-icon">📰</span>
+        <span>News</span>
+      </button>
+      <button class="nav-btn" data-page="converter">
+        <span class="nav-icon">💱</span>
+        <span>Converter</span>
+      </button>
+      <button class="nav-btn" data-page="settings">
+        <span class="nav-icon">⚙️</span>
+        <span>Settings</span>
+      </button>
+    </nav>
+
+    <script src="app.js"></script>
+  </body>
+</html>
