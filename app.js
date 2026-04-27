@@ -105,7 +105,7 @@ function updateTimestamp() {
     `Last updated: ${new Date().toLocaleTimeString()}`;
 }
 
-// ── CHART ────────────────────────────────────────────────
+// ── CHART ──
 function openChartPage(currency, days) {
   if (currency === 'XAU' || currency === 'XAG') {
     alert('Historical chart data is not available for Gold/Silver on the free plan.');
@@ -146,7 +146,6 @@ async function fetchChartData(currency, days) {
 
   const format = (d) => d.toISOString().split('T')[0];
 
-  // CORS proxy wraps the Frankfurter request
   const target = `https://api.frankfurter.app/${format(startDate)}..${format(today)}?from=${baseCurrency}&to=${currency}`;
   const proxy = `https://corsproxy.io/?url=${encodeURIComponent(target)}`;
 
@@ -219,7 +218,7 @@ function initTimeButtons() {
   });
 }
 
-// ── NEWS ─────────────────────────────────────────────────
+// ── NEWS ──
 async function fetchNews() {
   const container = document.getElementById('news-container');
   container.innerHTML = '<p class="loading-text">Loading news...</p>';
@@ -252,7 +251,7 @@ async function fetchNews() {
   }
 }
 
-// ── CONVERTER ────────────────────────────────────────────
+// ── CONVERTER ──
 function initConverter() {
   document.getElementById('convert-btn').addEventListener('click', () => {
     const amount = parseFloat(document.getElementById('amount').value);
@@ -271,7 +270,7 @@ function initConverter() {
   });
 }
 
-// ── SETTINGS ─────────────────────────────────────────────
+// ── SETTINGS ──
 function initSettings() {
   document.getElementById('apply-base').addEventListener('click', () => {
     baseCurrency = document.getElementById('base-currency').value;
@@ -295,7 +294,7 @@ function initSettings() {
   });
 }
 
-// ── INIT ─────────────────────────────────────────────────
+// ── INIT ───
 window.onload = function () {
   initNav();
   initConverter();
